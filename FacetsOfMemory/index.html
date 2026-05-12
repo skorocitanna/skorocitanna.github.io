@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Грані Пам'яті</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Грані Пам'яті</h1>
+    </header>
+
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Рівень: <span id="level">1</span></div>
+                    <div class="badge">Субрівень: <span id="sublevel">1</span> / <span id="total-sublevels">7</span></div>
+                    <div class="badge">Послідовність: <span id="sequence-length">0</span></div>
+                    <div class="badge timer-badge">⏱ <span id="timer">3:00</span></div>
+                </div>
+                <div class="controls">
+                    <button class="btn-sound" id="btn-sound" title="Звук">🔊</button>
+                    <button class="btn-exit" id="btn-exit">До рівнів</button>
+                </div>
+            </div>
+
+            <div class="stage" aria-live="polite">
+                <div class="board" id="board"></div>
+            </div>
+
+            <div class="phase-indicator" id="phase-indicator">
+                <span id="phase-text">Запам'ятайте послідовність</span>
+            </div>
+
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h3>Оберіть рівень</h3>
+                    <p class="game-description">Запам'ятайте послідовність, в якій загоряються клітинки, і відтворіть її в тому ж порядку.</p>
+                    <p class="training-tip">Для швидшого вдосконалення навичок тренуйтеся на складних для Вас рівнях!</p>
+                    <div class="level-grid" id="level-grid">
+                        <button class="level-btn" data-level="1"><span>1</span><small>Сонна муха</small></button>
+                        <button class="level-btn" data-level="2"><span>2</span><small>Пробудження</small></button>
+                        <button class="level-btn" data-level="3"><span>3</span><small>Фокус</small></button>
+                        <button class="level-btn" data-level="4"><span>4</span><small>Активність</small></button>
+                        <button class="level-btn" data-level="5"><span>5</span><small>Прискорення</small></button>
+                        <button class="level-btn" data-level="6"><span>6</span><small>Потік</small></button>
+                        <button class="level-btn" data-level="7"><span>7</span><small>Гіпердрайв</small></button>
+                        <button class="level-btn" data-level="8"><span>8</span><small>Блискавка</small></button>
+                        <button class="level-btn" data-level="9"><span>9</span><small>Надшвидкість</small></button>
+                        <button class="level-btn" data-level="10"><span>10</span><small>Миттєвість</small></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay hidden" id="countdown">3</div>
+
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2 id="result-title">Рівень завершено</h2>
+                    <div id="result-message"></div>
+                    <div>Пройдено субрівнів: <span id="final-sublevels">0</span></div>
+                    <div>Час: <span id="final-time">0:00</span></div>
+                    <div id="gw-leaderboard-inline"></div>
+                    <div class="result-buttons">
+                        <button id="play-again">До рівнів</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/diamonds.js?v=1.0.8"></script>
+</body>
+</html>

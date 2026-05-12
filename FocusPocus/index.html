@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Фокус-Покус</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Фокус-Покус</h1>
+    </header>
+
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Час: <span id="time">180</span>с</div>
+                    <div class="badge">Рахунок: <span id="score">0</span></div>
+                    <div class="badge lives" id="lives">❤️❤️❤️❤️❤️</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-stop-resume" id="btn-stop-resume">Зупинити</button>
+                </div>
+            </div>
+
+            <h2 class="subtitle">Знайди нову іконку</h2>
+
+            <div class="stage" id="stage">
+                <div class="icons-field" id="icons-field"></div>
+
+                <!-- Театральна завіса -->
+                <div class="curtain" id="curtain">
+                    <div class="curtain-left"></div>
+                    <div class="curtain-right"></div>
+                </div>
+            </div>
+
+            <!-- Стартовий екран -->
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h3>Готові?</h3>
+                    <button class="btn-start" id="start-btn">Старт</button>
+                </div>
+            </div>
+
+            <!-- Відлік -->
+            <div class="overlay hidden" id="countdown">3</div>
+
+            <!-- Результат -->
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2>Гру завершено</h2>
+                    <div>Правильних відповідей: <span id="correct">0</span> з <span id="total">0</span></div>
+                    <div id="gw-leaderboard-inline"><ul id="best-list" style="display:none"></ul></div>
+                    <button id="play-again">Грати знову</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/rockmemory.js?v=1.0.8"></script>
+</body>
+</html>

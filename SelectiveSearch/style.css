@@ -1,0 +1,469 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center, #fef3c7, #fde68a 1%, #fffbeb 70%);
+    color: #111827;
+}
+
+.game-header {
+    text-align: center;
+    margin: 0;
+    padding: 18px 0;
+    font-weight: 700;
+    background-color: #fffbeb;
+    border-bottom: 2px solid #e5e7eb;
+    z-index: 10;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.game-header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.panel {
+    width: 100%;
+    max-width: 1020px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    padding: 26px 30px 32px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.lives {
+    letter-spacing: 2px;
+    color: #ef4444;
+}
+
+/* ——— Phase bar ——— */
+.phase-bar {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.phase-text {
+    display: inline-block;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #92400e;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: color 0.3s, background 0.3s;
+}
+
+.phase-text.find-phase {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.phase-text.success-phase {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.phase-text.error-phase {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ——— Stage ——— */
+.stage {
+    background-color: #fefce8;
+    background-image: url("./images/bg.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(var(--board-cols, 3), 100px);
+    gap: 14px;
+    justify-content: center;
+}
+
+/* ——— Item cards ——— */
+.item {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    border: 3px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    position: relative;
+}
+
+.item img {
+    width: 72px;
+    height: 72px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.item:hover:not(.disabled):not(.correct):not(.wrong):not(.old) {
+    border-color: #f59e0b;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(245, 158, 11, 0.25);
+}
+
+.item:active:not(.disabled) {
+    transform: scale(0.95);
+}
+
+/* Memorize phase — items have a subtle glow */
+.item.memorize {
+    border-color: #fbbf24;
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.3);
+}
+
+/* Correct pick (new item found) */
+.item.correct {
+    border-color: #22c55e;
+    background: #d1fae5;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    animation: pulse-correct 0.4s ease;
+    cursor: default;
+}
+
+/* Wrong pick (item was old) */
+.item.wrong {
+    border-color: #ef4444;
+    background: #fee2e2;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    animation: shake 0.4s ease;
+    cursor: default;
+}
+
+/* Revealed as old after round ends */
+.item.old {
+    opacity: 0.45;
+    cursor: default;
+}
+
+/* Highlight new items the player missed */
+.item.reveal-new {
+    border-color: #3b82f6;
+    background: #dbeafe;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
+}
+
+.item.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ——— Animations ——— */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+@keyframes pulse-correct {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.item.animate-in {
+    animation: fadeIn 0.3s ease both;
+}
+
+/* ——— Buttons ——— */
+.btn-exit {
+    background: #475569;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+}
+
+.btn-exit:hover {
+    background: #334155;
+}
+
+/* ——— Start screen ——— */
+.start-screen {
+    position: fixed;
+    inset: 0;
+    background: #fffbeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    z-index: 7;
+    padding: 24px 16px;
+}
+
+.start-screen.hidden {
+    display: none;
+}
+
+.start-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #111827;
+    text-align: center;
+    width: min(520px, 92vw);
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 20px 28px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+}
+
+.game-description {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.training-tip {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: min(520px, 92%);
+}
+
+.level-btn {
+    background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+    color: #111827;
+    border-radius: 14px;
+    padding: 10px 6px;
+    font-weight: 800;
+    font-size: 18px;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.level-btn span {
+    font-size: 18px;
+}
+
+.level-btn small {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: none;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.level-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
+}
+
+/* ——— Overlay / Countdown ——— */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    color: #fff;
+    font-size: 64px;
+    font-weight: 800;
+    z-index: 11;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+/* ——— Result screen ——— */
+.result {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.55);
+    border-radius: 0;
+    z-index: 6;
+}
+
+.result.visible {
+    display: flex;
+}
+
+.result-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 32px;
+    width: min(520px, 90%);
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.result-card h2 {
+    margin: 0 0 12px 0;
+}
+
+.result-card div {
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+.result-card button {
+    background: #f59e0b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background 0.2s;
+}
+
+.result-card button:hover {
+    background: #d97706;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 900px) {
+    .board {
+        grid-template-columns: repeat(var(--board-cols, 3), 86px);
+        gap: 10px;
+    }
+
+    .item {
+        width: 86px;
+        height: 86px;
+    }
+
+    .item img {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+@media (max-width: 640px) {
+    .board {
+        grid-template-columns: repeat(var(--board-cols, 3), 70px);
+        gap: 8px;
+    }
+
+    .item {
+        width: 70px;
+        height: 70px;
+    }
+
+    .item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .level-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .phase-text {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .board {
+        grid-template-columns: repeat(var(--board-cols, 3), 60px);
+        gap: 6px;
+    }
+
+    .item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item img {
+        width: 44px;
+        height: 44px;
+    }
+}

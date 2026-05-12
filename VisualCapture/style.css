@@ -1,0 +1,433 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.game-header {
+    text-align: center;
+    margin: 0;
+    padding: 18px 0;
+    font-weight: 700;
+    background-color: #f3f4f6;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.game-header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.panel {
+    width: 100%;
+    max-width: 960px;
+    background: #f2e9df;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    padding: 28px 32px 32px;
+    position: relative;
+    background-image: url("./images/bg.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.lives {
+    letter-spacing: 2px;
+    color: #ef4444;
+}
+
+.subtitle {
+    margin: 0 0 18px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #374151;
+    line-height: 1.4;
+}
+
+/* ——— Stage: two cards ——— */
+.stage {
+    border-radius: 20px;
+    padding: 40px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-pair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.stroop-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px 32px 28px;
+    min-width: 200px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s;
+}
+
+.card-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.card-word {
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    user-select: none;
+    line-height: 1.2;
+}
+
+.vs-divider {
+    font-size: 22px;
+    font-weight: 800;
+    color: #9ca3af;
+    user-select: none;
+}
+
+/* ——— Answer buttons ——— */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 26px;
+}
+
+button {
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.btn-choice {
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    padding: 16px 32px;
+    border-radius: 14px;
+    transition: transform 0.12s, box-shadow 0.12s, background 0.15s;
+}
+
+.btn-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.btn-yes:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.btn-no {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-no:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.arrow {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.answer-text {
+    font-size: 20px;
+}
+
+.btn-choice.flash-correct {
+    animation: flash-green 0.35s ease;
+}
+
+.btn-choice.flash-wrong {
+    animation: flash-red 0.35s ease;
+}
+
+@keyframes flash-green {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    50% { box-shadow: 0 0 30px 8px rgba(34, 197, 94, 0.5); }
+    100% { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+}
+
+@keyframes flash-red {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    50% { box-shadow: 0 0 30px 8px rgba(239, 68, 68, 0.5); }
+    100% { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+}
+
+.key-hint {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #9ca3af;
+}
+
+/* ——— Control buttons ——— */
+.btn-stop-resume {
+    background: #f59e0b;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+    display: none;
+}
+
+.btn-stop-resume:hover {
+    background: #d97706;
+}
+
+.btn-start {
+    background: #10b981;
+    color: #fff;
+    padding: 14px 36px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+}
+
+.btn-start:hover {
+    background: #059669;
+}
+
+/* ——— Overlays ——— */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    color: #fff;
+    font-size: 64px;
+    font-weight: 800;
+    z-index: 5;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.start-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    z-index: 7;
+}
+
+.start-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #000000;
+    text-align: center;
+    max-width: 420px;
+    padding: 18px 16px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.start-content h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.start-rule {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    color: #0e0e0e;
+}
+
+.start-rule strong {
+    color: #000000;
+}
+
+/* ——— Result ——— */
+.result {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.55);
+    border-radius: 24px;
+    z-index: 6;
+}
+
+.result.visible {
+    display: flex;
+}
+
+.result-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 32px;
+    width: min(520px, 90%);
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.result-card h2 {
+    margin: 0 0 12px 0;
+}
+
+.result-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 18px 0;
+    text-align: left;
+}
+
+.result-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+}
+
+.result-card button {
+    background: #2b6eea;
+    color: #fff;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 780px) {
+    .card-word {
+        font-size: 25px;
+    }
+
+    .stroop-card {
+        min-width: 150px;
+        min-height: 120px;
+        padding: 18px 20px 22px;
+    }
+
+    .btn-choice {
+        min-width: 150px;
+        padding: 14px 24px;
+
+    }
+}
+
+@media (max-width: 520px) {
+    .app{
+        padding: 0;
+    }
+    .card-pair {
+        gap: 14px;
+        flex-wrap: nowrap;
+    }
+    .card-label{
+        font-size: 10px;
+    }
+
+    .card-word {
+        font-size: 18px;
+    }
+
+    .stroop-card {
+        min-width: 120px;
+        min-height: 100px;
+        padding: 14px 16px 18px;
+    }
+
+    .vs-divider {
+        font-size: 18px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .btn-choice {
+        min-width: 130px;
+        padding: 12px 20px;
+        font-size: 18px;
+    }
+}

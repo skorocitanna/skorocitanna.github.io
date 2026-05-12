@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Селективний пошук</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Селективний пошук</h1>
+    </header>
+
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Час: <span id="time">180</span>с</div>
+                    <div class="badge">Рівень: <span id="level">1</span></div>
+                    <div class="badge">Субрівень: <span id="sublevel">1</span> / <span id="total-sublevels">5</span></div>
+                    <div class="badge" style="display: none;">Раунд: <span id="round">1</span></div>
+                    <div class="badge">Рахунок: <span id="score">0</span></div>
+                    <div class="badge lives" id="lives">❤️❤️❤️❤️❤️</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-exit" id="btn-exit">До рівнів</button>
+                </div>
+            </div>
+
+            <div class="phase-bar">
+                <div class="phase-text" id="phase-text">Запам'ятайте ці предмети</div>
+            </div>
+
+            <div class="stage" aria-live="polite">
+                <div class="board" id="board"></div>
+            </div>
+
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h3>Оберіть рівень</h3>
+                    <p class="game-description">На полі показано набір предметів. Запам'ятайте їх.<br>У наступних раундах деякі предмети зміняться на нові. Знайдіть нові предмети!</p>
+                    <p class="training-tip">Для швидшого вдосконалення навичок тренуйтеся на складних для Вас рівнях!</p>
+                    <div class="level-grid" id="level-grid">
+                        <button class="level-btn" data-level="1"><span>1</span><small>Розминка</small></button>
+                        <button class="level-btn" data-level="2"><span>2</span><small>Старт</small></button>
+                        <button class="level-btn" data-level="3"><span>3</span><small>Ритм</small></button>
+                        <button class="level-btn" data-level="4"><span>4</span><small>Стійкість</small></button>
+                        <button class="level-btn" data-level="5"><span>5</span><small>Спринт</small></button>
+                        <button class="level-btn" data-level="6"><span>6</span><small>Сила</small></button>
+                        <button class="level-btn" data-level="7"><span>7</span><small>Рекорд</small></button>
+                        <button class="level-btn" data-level="8"><span>8</span><small>Тріумф</small></button>
+                        <button class="level-btn" data-level="9"><span>9</span><small>Чемпіон</small></button>
+                        <button class="level-btn" data-level="10"><span>10</span><small>Олімп</small></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay hidden" id="countdown">3</div>
+
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2 id="result-title">Рівень завершено</h2>
+                    <div id="result-message"></div>
+                    <div>Набрано балів: <span id="final-score">0</span></div>
+                    <div>Пройдено субрівнів: <span id="final-sublevels">0</span></div>
+                    <div id="gw-leaderboard-inline"></div>
+                    <button id="play-again">До рівнів</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/finddifferences.js?v=1.0.8"></script>
+</body>
+</html>

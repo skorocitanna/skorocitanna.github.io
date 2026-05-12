@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Дуал - контроль</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Дуал - контроль</h1>
+    </header>
+
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Час: <span id="time">180</span>с</div>
+                    <div class="badge">Рівень: <span id="level">1</span></div>
+                    <div class="badge">Субрівень: <span id="sublevel">1</span> / 5</div>
+                    <div class="badge">Крок: <span id="progress">0</span> / 49</div>
+                    <div class="badge lives" id="lives">❤️❤️❤️</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-stop-resume" id="btn-stop-resume">Зупинити</button>
+                    <button class="btn-exit" id="btn-exit">До рівнів</button>
+                </div>
+            </div>
+
+            <!-- <div class="helper">
+                <div class="rule">
+                    Ви бачите ігрове поле з клітинок чорного та червоного кольору. Клітинки
+                    пронумеровані. Зверху з’являється завдання: оберіть найменше або найбільше число
+                    певного кольору. Виконуйте завдання по черзі — кожен правильний клік наближає до
+                    завершення раунду. Якщо помилитися або пропустити число — це коштує життя.
+                    <br>На вищих рівнях гра складніша та цікавіша.
+                </div>
+            </div> -->
+
+            <div class="task-line" id="task">Оберіть найменше чорне число</div>
+
+            <div class="stage" aria-live="polite">
+                <div class="grid" id="grid"></div>
+            </div>
+
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h3>Оберіть рівень</h3>
+                    <p class="training-tip">Для швидшого вдосконалення навичок тренуйтеся на складних для Вас рівнях!</p>
+                    <div class="level-grid" id="level-grid">
+                        <button class="level-btn" data-level="1"><span>1</span><small>Чайник</small></button>
+                        <button class="level-btn" data-level="2"><span>2</span><small>Проходив повз</small></button>
+                        <button class="level-btn" data-level="3"><span>3</span><small>В темі</small></button>
+                        <button class="level-btn" data-level="4"><span>4</span><small>Міцний горішок</small></button>
+                        <button class="level-btn" data-level="5"><span>5</span><small>Спец</small></button>
+                        <button class="level-btn" data-level="6"><span>6</span><small>Машина</small></button>
+                        <button class="level-btn" data-level="7"><span>7</span><small>Бос</small></button>
+                        <button class="level-btn" data-level="8"><span>8</span><small>Люта потужність</small></button>
+                        <button class="level-btn" data-level="9"><span>9</span><small>Суперрозум</small></button>
+                        <button class="level-btn" data-level="10"><span>10</span><small>Всесвітній розум</small></button>
+                    </div>
+                    <div class="level-hint" id="level-hint"></div>
+                </div>
+            </div>
+
+            <div class="overlay hidden" id="countdown">3</div>
+
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2>Гру завершено</h2>
+                    <div>Виконано кроків: <span id="correct">0</span> з <span id="total">0</span></div>
+                    <div class="result-sub" id="result-sub">Раунд завершено</div>
+                    <div id="gw-leaderboard-inline"><span id="best-level" style="display:none">1</span><ul id="best-list" style="display:none"></ul></div>
+                    <button id="play-again">Грати знову</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/clickerblackred.js?v=1.0.8"></script>
+</body>
+</html>

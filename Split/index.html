@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Спліт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Спліт</h1>
+    </header>
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Час: <span id="time">180</span>с</div>
+                    <div class="badge">Рахунок: <span id="score">0</span></div>
+                    <div class="badge lives" id="lives">❤️❤️❤️❤️❤️</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-stop-resume" id="btn-stop-resume">Зупинити</button>
+                </div>
+            </div>
+            <h1>Дайте відповідь на запитання</h1>
+            <div class="questions">
+                <div class="question">
+                    <p>Чи синій колір?</p>
+                    <div class="card" id="card-color"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="question">
+                    <p>Чи квадратна фігура?</p>
+                    <div class="card" id="card-shape"></div>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn-no" id="btn-no">Ні</button>
+                <button class="btn-yes" id="btn-yes">Так</button>
+            </div>
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h2>Готові?</h2>
+                    <button class="btn-start" id="start-btn">Старт</button>
+                </div>
+            </div>
+            <div class="overlay hidden" id="countdown">3</div>
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2>Гру завершено</h2>
+                    <div>Правильних відповідей: <span id="correct">0</span> з <span id="total">0</span></div>
+                    <div id="gw-leaderboard-inline"><ul id="best-list" style="display:none"></ul></div>
+                    <button id="play-again">Грати знову</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/geoswitching.js?v=1.0.8"></script>
+</body>
+</html>

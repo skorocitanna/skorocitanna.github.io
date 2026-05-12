@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Логічний фільтр</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=1.0.8">
+    <link rel="stylesheet" href="../js/game-widgets.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Логічний фільтр</h1>
+    </header>
+    <div class="app">
+        <div class="panel">
+            <div class="topbar">
+                <div class="status">
+                    <div class="badge">Час: <span id="time">180</span>с</div>
+                    <div class="badge">Рахунок: <span id="score">0</span></div>
+                    <div class="badge lives" id="lives">❤️❤️❤️❤️❤️</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-stop-resume" id="btn-stop-resume" style="display:none;">Зупинити</button>
+                </div>
+            </div>
+
+            <div class="rule-bar" id="rule-bar">
+                Сортуй за: <span class="rule-text" id="rule-text">—</span>
+            </div>
+
+            <div class="arena" aria-live="polite">
+                <!-- Top: Circle (↑) -->
+                <button class="btn-answer pos-top" id="btn-1" data-index="1">
+                    <svg class="shape-icon" viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="#eab308"/></svg>
+                    <span class="key-label">↑</span>
+                </button>
+
+                <!-- Left: Square (←) -->
+                <button class="btn-answer pos-left" id="btn-0" data-index="0">
+                    <svg class="shape-icon" viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" rx="4" fill="#3b82f6"/></svg>
+                    <span class="key-label">←</span>
+                </button>
+
+                <!-- Center: Game Card -->
+                <div class="game-card-wrap">
+                    <div class="game-card" id="game-card">
+                        <div class="card-shape" id="card-shape"></div>
+                    </div>
+                </div>
+
+                <!-- Right: Triangle (→) -->
+                <button class="btn-answer pos-right" id="btn-3" data-index="3">
+                    <svg class="shape-icon" viewBox="0 0 60 60"><polygon points="30,6 56,54 4,54" fill="#ef4444"/></svg>
+                    <span class="key-label">→</span>
+                </button>
+
+                <!-- Bottom: Diamond (↓) -->
+                <button class="btn-answer pos-bottom" id="btn-2" data-index="2">
+                    <svg class="shape-icon" viewBox="0 0 60 60"><polygon points="30,4 56,30 30,56 4,30" fill="#22c55e"/></svg>
+                    <span class="key-label">↓</span>
+                </button>
+            </div>
+            <div class="key-hint">Або натисніть ← ↑ ↓ → на клавіатурі</div>
+
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h2>Логічний фільтр</h2>
+                    <p class="start-rule">З'являється картка з фігурою рандомного кольору.<br>
+                    Внизу написано правило сортування: <strong>за формою</strong> або <strong>за кольором</strong>.<br>
+                    Оберіть відповідну кнопку за вказаним критерієм.</p>
+                    <div class="start-legend">
+                        <div class="legend-item"><svg viewBox="0 0 40 40" width="32" height="32"><rect x="4" y="4" width="32" height="32" rx="3" fill="#3b82f6"/></svg> Квадрат — Синій</div>
+                        <div class="legend-item"><svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="16" fill="#eab308"/></svg> Коло — Жовтий</div>
+                        <div class="legend-item"><svg viewBox="0 0 40 40" width="32" height="32"><polygon points="20,2 38,20 20,38 2,20" fill="#22c55e"/></svg> Ромб — Зелений</div>
+                        <div class="legend-item"><svg viewBox="0 0 40 40" width="32" height="32"><polygon points="20,4 38,36 2,36" fill="#ef4444"/></svg> Трикутник — Червоний</div>
+                    </div>
+                    <button class="btn-start" id="start-btn">Старт</button>
+                </div>
+            </div>
+
+            <div class="overlay hidden" id="countdown">3</div>
+
+            <div class="result" id="result">
+                <div class="result-card">
+                    <h2>Гру завершено</h2>
+                    <div>Правильних відповідей: <span id="correct">0</span> з <span id="total">0</span></div>
+                    <div id="gw-leaderboard-inline"><ul id="best-list" style="display:none"></ul></div>
+                    <button id="play-again">Грати знову</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/analytics.js"></script>
+    <script src="../js/game-widgets.js"></script>
+    <script src="./js/qsortex.js?v=1.0.8"></script>
+</body>
+</html>
